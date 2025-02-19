@@ -40,7 +40,7 @@ Before installation, ensure your system meets the following requirements:
 #### 1️⃣ Pull Required LLM Models
 
 ```bash
-ollama pull llama2-uncensored
+ollama pull llama3.2-vision
 ollama pull phi4
 ollama pull mxbai-embed-large
 ```

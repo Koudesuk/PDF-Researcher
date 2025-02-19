@@ -38,7 +38,7 @@
 #### 1️⃣ 下載必要的 LLM 模型
 
 ```bash
-ollama pull llama2-uncensored
+ollama pull llama3.2-vision
 ollama pull phi4
 ollama pull mxbai-embed-large
 ```
