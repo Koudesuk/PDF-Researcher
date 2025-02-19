@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  research-assistant:
+    image: koudesuk/research-assistant:latest
+    container_name: research-assistant
+    ports:
+      - "9999:9999"  # 後端 API
+      - "5173:5173"  # 前端開發服務器
+    volumes:
+      - ./config:/app/config:ro
+      - research_data:/app/backend/uploads
+      - research_data:/app/backend/screenshots
+      - research_data:/app/backend/logs
+    environment:
+      - FLASK_APP=backend/app.py
+      - FLASK_ENV=production
+      - OLLAMA_HOST=host.docker.internal  # 使用 host.docker.internal 訪問宿主機的 Ollama
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # 確保容器可以訪問宿主機服務
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9999"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  research_data:
+    driver: local
+
+networks:
+  default:
+    name: research-network
+    external: true
