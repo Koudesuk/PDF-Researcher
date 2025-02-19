@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+.text-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 0.2;
+  line-height: 1;
+  text-align: initial;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+.text-layer > span {
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+.text-layer > div {
+  font-family: "Times New Roman", Times, serif !important;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-layer ::selection {
+  background: rgba(0, 0, 255, 0.2);
+}
+
+.highlight-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.highlight {
+  position: absolute;
+  background-color: rgba(255, 255, 0, 0.3);
+  mix-blend-mode: multiply;
+}
+
+/* Fixes for PDF container */
+.pdf-container {
+  position: relative;
+  background-color: #525659;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* PDF container optimizations */
+.pdf-viewer-container {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.page-container {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.transition-opacity {
+  transition: opacity 300ms ease-in-out;
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .page-container {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
